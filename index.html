@@ -17,12 +17,14 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 50px;
+        min-height: 100vh;
       }
 
       .mapa-container {
         max-width: 500px;
         width: 100%;
         position: relative;
+        margin-top: 5%;
       }
 
       svg,
@@ -75,10 +77,6 @@
 <script src="estados.js"></script>
 <script>
   const info_container = document.querySelector(".info-container");
-  const mapaW = document.querySelector(".mapa-container").children[0].offsetWidth;
-  const mapaH = document.querySelector(".mapa-container").children[0].offsetHeight;
-
-  document.querySelector(".mapa-container").style.height = mapaH + "px";
 
   estados.forEach((estado) => {
     fetch(`imgs/${estado.img}`)
@@ -102,8 +100,8 @@
         });
 
         svg.style.width = `${estado.w}%`;
-        svg.style.left = `${(estado.x / mapaW) * 100}%`;
-        svg.style.top = `${(estado.y / mapaH) * 100}%`;
+        svg.style.left = `${estado.x}px`;  
+        svg.style.top = `${estado.y}px`;
         svg.style.position = "absolute";
 
         svg.children[0].addEventListener("mouseover", () => {
